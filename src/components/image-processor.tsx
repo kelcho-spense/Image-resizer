@@ -7,7 +7,9 @@ import { ProcessedImage } from "./processed-image"
 import { nanoid } from 'nanoid'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
-import { compressImage, formatFileSize, getFileExtension } from "@/lib/compression"
+import { compressImage, formatFileSize, getFileExtension, initializeEncoders, availableEncoders } from "@/lib/compression"
+
+import { ensureWasmLoaded } from "@/lib/wasm"
 
 export type OutputFormat = "AVIF" | "JPEG" | "JXL" | "PNG" | "WEBP"
 
@@ -38,6 +40,23 @@ export function ImageProcessor() {
       })
     }
   }, [images])
+
+  // Initialize encoders when component mounts
+  useEffect(() => {
+    initializeEncoders().then(() => {
+      // If WEBP is not available, switch to a format that is
+      if (!availableEncoders[outputFormat]) {
+        // Find first available format
+        const firstAvailable = Object.entries(availableEncoders)
+          .find(([_, available]) => available)?.[0] as OutputFormat | undefined;
+
+        if (firstAvailable) {
+          setOutputFormat(firstAvailable);
+          console.log(`Switched to ${firstAvailable} format as ${outputFormat} is not available`);
+        }
+      }
+    });
+  }, []);
 
   const handleFilesAdded = useCallback((files: File[]) => {
     const newImages = files.map((file) => ({
@@ -203,8 +222,8 @@ export function ImageProcessor() {
             <div className="space-x-3">
               <button
                 className={`px-4 py-2 rounded-md ${isProcessing
-                    ? 'bg-blue-300 cursor-not-allowed'
-                    : 'bg-blue-500 hover:bg-blue-600 text-white'
+                  ? 'bg-blue-300 cursor-not-allowed'
+                  : 'bg-blue-500 hover:bg-blue-600 text-white'
                   }`}
                 onClick={handleProcessImages}
                 disabled={isProcessing || images.length === 0}
@@ -215,8 +234,8 @@ export function ImageProcessor() {
               {hasProcessedImages && (
                 <button
                   className={`px-4 py-2 rounded-md flex items-center gap-1 ${isDownloadingAll
-                      ? 'bg-green-300 cursor-not-allowed'
-                      : 'bg-green-500 hover:bg-green-600 text-white'
+                    ? 'bg-green-300 cursor-not-allowed'
+                    : 'bg-green-500 hover:bg-green-600 text-white'
                     }`}
                   onClick={handleDownloadAll}
                   disabled={isDownloadingAll}
