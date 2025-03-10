@@ -1,5 +1,5 @@
 {
-  "name": "image-processor",
+  "name": "image-resizer",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,24 +9,23 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@jsquash/avif": "^2.0.0",
+    "@jsquash/jpeg": "^1.4.0",
+    "@jsquash/png": "^3.0.1",
+    "@jsquash/webp": "^1.4.0",
     "@tailwindcss/vite": "^4.0.6",
-    "@tanstack/react-form": "^1.0.0",
-    "@tanstack/react-query": "^5.66.5",
-    "@tanstack/react-query-devtools": "^5.66.5",
     "@tanstack/react-router": "^1.114.3",
     "@tanstack/react-router-devtools": "^1.114.3",
-    "@tanstack/react-store": "^0.7.0",
     "@tanstack/router-plugin": "^1.114.3",
-    "@tanstack/store": "^0.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.476.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-dropzone": "^14.3.8",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.6",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.24.2"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

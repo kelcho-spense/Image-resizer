@@ -1,5 +1,6 @@
+import { ImageProcessor } from '@/components/image-processor'
 import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import { Image }from "lucide-react"
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -7,33 +8,15 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
+    <div className="flex flex-col items-center">
+     <header className="text-center mb-8">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Image className="w-6 h-6 text-blue-500" />
+          <h1 className="text-3xl font-bold">Image Converter</h1>
+        </div>
+        <p className="text-gray-600">Compress and convert your images to AVIF, JPEG, JPEG XL, PNG, or WebP</p>
       </header>
+      <ImageProcessor />
     </div>
   )
 }

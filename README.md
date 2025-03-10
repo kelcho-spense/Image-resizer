@@ -1,7 +1,6 @@
 A modern, browser-based image compression tool that leverages WebAssembly for high-performance image optimization. Squish supports multiple formats and provides an intuitive interface for compressing your images without compromising quality.
 ![1741609398747](image/README/1741609398747.png)
 
-
 ## Features
 
 * 🖼️ Support for multiple image formats:
@@ -25,13 +24,12 @@ A modern, browser-based image compression tool that leverages WebAssembly for hi
 Squish is built with modern web technologies:
 
 * React + TypeScript for the UI
-* Vite for blazing fast development
+* Using Tanstack router and its libs for blazing fast development
 * WebAssembly for native-speed image processing
 * Tailwind CSS for styling
 * jSquash for image codec implementations
 
 ## 🚀 Getting Started
-
 
 ## Usage
 
@@ -47,7 +45,6 @@ Squish is built with modern web technologies:
 * JPEG XL: 75%
 * PNG: Lossless
 * WebP: 75%
-
 
 ## Acknowledgments
 
